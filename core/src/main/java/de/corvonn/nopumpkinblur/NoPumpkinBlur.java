@@ -10,7 +10,8 @@ public class NoPumpkinBlur extends LabyAddon<NoPumpkinBlurConfig> {
     protected void enable() {
     this.registerSettingCategory();
     instance = this;
-    this.logger().info("Loaded NoPumpkinBlur");
+
+    this.logger().info("Loaded " + addonInfo().getDisplayName() + " v" + addonInfo().getVersion() + " by " + addonInfo().getAuthor());
     }
 
     @Override
