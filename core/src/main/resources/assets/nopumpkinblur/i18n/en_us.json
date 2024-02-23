@@ -1,0 +1,14 @@
+{
+    "nopumpkinblur": {
+        "settings": {
+            "name": "No Pumpkin Blur",
+                "enabled": {
+                "name": "Enabled"
+            },
+            "opacity": {
+                "name": "Opacity",
+                "description": "The opacity of the pumpkin blur"
+            }
+        }
+    }
+}

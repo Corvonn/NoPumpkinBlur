@@ -1,0 +1,14 @@
+{
+    "nopumpkinblur": {
+        "settings": {
+            "name": "No Pumpkin Blur",
+            "enabled": {
+                "name": "Aktiviert"
+            },
+            "opacity": {
+                "name": "Deckkraft",
+                "description": "Gibt an, wie stark der Blur Effekt sein soll"
+            }
+        }
+    }
+}
