@@ -1,4 +1,4 @@
-rootProject.name = "NoPumpkinBlur"
+rootProject.name = "nopumpkinblur"
 
 pluginManagement {
     val labyGradlePluginVersion = "0.3.44"
