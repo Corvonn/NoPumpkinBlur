@@ -29,26 +29,25 @@ public class MixinGui {
 
     @Inject(method = "renderTextureOverlay", at = @At("HEAD"), cancellable = true)
     private void mixinRenderTextureOverlay(PoseStack poseStack, ResourceLocation resourceLocation, float opacity, CallbackInfo ci) {
+        if(resourceLocation != PUMPKIN_BLUR_LOCATION) return;
         NoPumpkinBlur instance = NoPumpkinBlur.getInstance();
         if(instance == null) return; //Necessary?
         NoPumpkinBlurConfig config = instance.configuration();
         if(!config.enabled().get()) return;
 
-        if(resourceLocation == PUMPKIN_BLUR_LOCATION) {
-            opacity = config.opacity().get();
+        opacity = config.opacity().get();
 
-            ci.cancel();
+        ci.cancel();
 
-            if(opacity == 0) return;
+        if(opacity == 0) return;
 
-            RenderSystem.disableDepthTest();
-            RenderSystem.depthMask(false);
-            RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, opacity);
-            RenderSystem.setShaderTexture(0, resourceLocation);
-            blit(poseStack, 0, 0, -90, 0.0F, 0.0F, this.screenWidth, this.screenHeight, this.screenWidth, this.screenHeight);
-            RenderSystem.depthMask(true);
-            RenderSystem.enableDepthTest();
-            RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-        }
+        RenderSystem.disableDepthTest();
+        RenderSystem.depthMask(false);
+        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, opacity);
+        RenderSystem.setShaderTexture(0, resourceLocation);
+        blit(poseStack, 0, 0, -90, 0.0F, 0.0F, this.screenWidth, this.screenHeight, this.screenWidth, this.screenHeight);
+        RenderSystem.depthMask(true);
+        RenderSystem.enableDepthTest();
+        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
     }
 }
