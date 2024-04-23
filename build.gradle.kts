@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "de.corvonn"
-version = "1.0.1"
+version = "1.0.2"
 
 java.toolchain.languageVersion.set(JavaLanguageVersion.of(17))
 
@@ -16,8 +16,8 @@ labyMod {
         displayName = "No Pumpkin Blur"
         author = "Corvonn"
         description = "Removes or reduces the annoying pumpkin blur effect when wearing a pumpkin on your head."
-        minecraftVersion = "1.8.9<1.20.4"
-        version = System.getenv().getOrDefault("VERSION", "1.0.1")
+        minecraftVersion = "1.8.9<1.20.5"
+        version = System.getenv().getOrDefault("VERSION", "1.0.2")
     }
 
     minecraft {
@@ -32,7 +32,8 @@ labyMod {
                 "1.19.4",
                 "1.20.1",
                 "1.20.2",
-                "1.20.4"
+                "1.20.4",
+                "1.20.5"
         ) { version, provider ->
             configureRun(provider, version)
         }
@@ -75,7 +76,7 @@ fun configureRun(provider: net.labymod.gradle.core.minecraft.provider.VersionPro
 
     provider.javaVersion = when (gameVersion) {
         else -> {
-            JavaVersion.VERSION_17
+            JavaVersion.VERSION_21
         }
     }
 
