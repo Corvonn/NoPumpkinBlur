@@ -6,7 +6,7 @@ plugins {
 val versions = providers.gradleProperty("net.labymod.minecraft-versions").get().split(";")
 
 group = "de.corvonn"
-version = providers.environmentVariable("VERSION").getOrElse("1.0.6")
+version = providers.environmentVariable("VERSION").getOrElse("1.0.7")
 
 labyMod {
     defaultPackageName = "de.corvonn.nopumpkinblur"
