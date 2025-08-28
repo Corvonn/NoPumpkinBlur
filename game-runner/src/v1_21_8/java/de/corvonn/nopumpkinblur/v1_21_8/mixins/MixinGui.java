@@ -1,10 +1,10 @@
-package de.corvonn.nopumpkinblur.v1_21_5.mixins;
+package de.corvonn.nopumpkinblur.v1_21_8.mixins;
 
 import de.corvonn.nopumpkinblur.NoPumpkinBlur;
 import de.corvonn.nopumpkinblur.NoPumpkinBlurConfig;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.ARGB;
 import org.spongepowered.asm.mixin.Final;
@@ -19,24 +19,34 @@ public class MixinGui {
 
     @Unique
     @Final
-    private static ResourceLocation PUMPKIN_BLUR_LOCATION = ResourceLocation.withDefaultNamespace("textures/misc/pumpkinblur.png");
+    private static final ResourceLocation PUMPKIN_BLUR_LOCATION = ResourceLocation.withDefaultNamespace("textures/misc/pumpkinblur.png");
 
     @Inject(method = "renderTextureOverlay", at = @At("HEAD"), cancellable = true)
     private void mixinRenderTextureOverlay(GuiGraphics guiGraphics, ResourceLocation resourceLocation, float opacity, CallbackInfo ci) {
-        if(!resourceLocation.equals(PUMPKIN_BLUR_LOCATION)) return;
+        if (!resourceLocation.equals(PUMPKIN_BLUR_LOCATION)) {
+            return;
+        }
+
         NoPumpkinBlur instance = NoPumpkinBlur.getInstance();
-        if(instance == null) return; //Necessary?
+        if (instance == null) {
+            return;
+        }
+
         NoPumpkinBlurConfig config = instance.configuration();
-        if(!config.enabled().get()) return;
+        if (!config.enabled().get()) {
+            return;
+        }
 
         opacity = config.opacity().get();
 
         ci.cancel();
 
-        if(opacity == 0) return;
+        if (opacity == 0) {
+            return;
+        }
 
         guiGraphics.blit(
-            RenderType::guiTexturedOverlay,
+            RenderPipelines.GUI_TEXTURED,
             resourceLocation,
             0,
             0,
@@ -46,6 +56,7 @@ public class MixinGui {
             guiGraphics.guiHeight(),
             guiGraphics.guiWidth(),
             guiGraphics.guiHeight(),
-            ARGB.white(opacity));
+            ARGB.white(opacity)
+        );
     }
 }
