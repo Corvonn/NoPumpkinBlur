@@ -29,9 +29,9 @@ labyMod {
         displayName = "No Pumpkin Blur"
         author = "Corvonn"
         description = "Removes or reduces the annoying pumpkin blur effect when wearing a pumpkin on your head."
-        minecraftVersion = "1.8.9<1.21.8"
+        minecraftVersion = "1.8.9<1.21.10"
         version = rootProject.version.toString()
-        releaseChannel = ReleaseChannels.SNAPSHOT
+        releaseChannel = ReleaseChannels.PRODUCTION
     }
 }
 
