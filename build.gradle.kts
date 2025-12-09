@@ -8,7 +8,7 @@ plugins {
 val versions = providers.gradleProperty("net.labymod.minecraft-versions").get().split(";")
 
 group = "de.corvonn"
-version = providers.environmentVariable("VERSION").getOrElse("1.0.10")
+version = providers.environmentVariable("VERSION").getOrElse("1.0.11")
 
 labyMod {
     defaultPackageName = "de.corvonn.nopumpkinblur"
@@ -29,9 +29,9 @@ labyMod {
         displayName = "No Pumpkin Blur"
         author = "Corvonn"
         description = "Removes or reduces the annoying pumpkin blur effect when wearing a pumpkin on your head."
-        minecraftVersion = "1.8.9<1.21.10"
+        minecraftVersion = "1.8.9<1.21.11"
         version = rootProject.version.toString()
-        releaseChannel = ReleaseChannels.PRODUCTION
+        releaseChannel = ReleaseChannels.SNAPSHOT
     }
 }
 
